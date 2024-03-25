@@ -4,6 +4,7 @@ abstract class Rute {
     int radnummer;
     int kolonnenummer;
     Labyrint lab;
+    Labyrint2 lab2;
     Rute[] naboer;
     int antnaboer = 0;
     Boolean aapning = false;
@@ -15,6 +16,17 @@ abstract class Rute {
         radnummer = rad;
         kolonnenummer = kolonne;
         lab = l;
+        naboer = new Rute[4];
+        naboer[0] = null;   //Nord
+        naboer[1] = null;   //Vest
+        naboer[2] = null;   //Øst
+        naboer[3] = null;   //Syd
+    }
+
+    public Rute(int rad, int kolonne, Labyrint2 l){
+        radnummer = rad;
+        kolonnenummer = kolonne;
+        lab2 = l;
         naboer = new Rute[4];
         naboer[0] = null;   //Nord
         naboer[1] = null;   //Vest
@@ -39,7 +51,11 @@ abstract class Rute {
     }
     public Rute hentRute(int i, int j){
         try{
-            return lab.ruter[i][j];
+            if (lab == null) {
+                return lab2.ruter[i][j];
+            } else if (lab2 == null) {
+                return lab.ruter[i][j];
+            } else {return null;}
 
         }catch(IndexOutOfBoundsException e){
             return null;

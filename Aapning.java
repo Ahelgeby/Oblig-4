@@ -1,10 +1,14 @@
 public class Aapning extends HvitRute {
     Boolean aapning = true;
-    int rutenr;
 
     public Aapning(int rad, int kolonne, Labyrint l){
         super(rad,kolonne,l);
     }
+
+    public Aapning(int rad, int kolonne, Labyrint2 l){
+        super(rad,kolonne,l);
+    }
+
     @Override
     public boolean erAapning(){
         return aapning;
@@ -12,6 +16,8 @@ public class Aapning extends HvitRute {
     @Override
     //Skriver ut denne rutens kordinater, og at dette er en åpningsrute og stopper rekursjonen
     public void finn(Rute fra){
+        rutenr = teller;
+        teller++;
         System.out.println(this);
         return;
         }
@@ -19,7 +25,7 @@ public class Aapning extends HvitRute {
     
     @Override
     public String toString(){
-        return "Solve: " + super.toString();
+        return "Solve: " + "Radnr: " + radnummer + "KolonneNr: " + kolonnenummer;
     }
 
 

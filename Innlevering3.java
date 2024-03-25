@@ -21,6 +21,7 @@ public class Innlevering3 {
         int rad = in.nextInt();
         int kolonne = in.nextInt();
         lab.finnUtveifra(rad, kolonne);
+        lab.tegnTraversering();
         System.out.println("Tast 1 for aa spille, tast -1 for aa avslutte");
         les = in.nextInt();
     }

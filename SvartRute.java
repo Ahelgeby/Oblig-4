@@ -7,6 +7,12 @@ public class SvartRute extends Rute{
         tegn = "#";
     }
 
+    public SvartRute(int rad, int kolonne, Labyrint2 l){
+        super(rad,kolonne,l);
+        farge = "Sort";
+        tegn = "#";
+    }
+
     @Override
     public String hentFarge(){
         return this.farge;
@@ -27,6 +33,6 @@ public class SvartRute extends Rute{
 
     @Override
     public String toString(){
-        return super.toString();
+        return hentTegn();
     }
 }

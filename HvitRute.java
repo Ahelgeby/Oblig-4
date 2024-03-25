@@ -1,14 +1,21 @@
 
 public class HvitRute extends Rute{
     String farge;
-    int rutenr;
 
     public HvitRute(int rad, int kolonne, Labyrint l){
         super(rad,kolonne,l);
         farge = "hvit";
         tegn = ".";
-        rutenr = 1;
+        rutenr = 0;
     }
+
+    public HvitRute(int rad, int kolonne, Labyrint2 l){
+        super(rad,kolonne,l);
+        farge = "hvit";
+        tegn = ".";
+        rutenr = 0;
+    }
+    
     @Override
     public String hentFarge(){
         return this.farge;
@@ -25,12 +32,10 @@ public class HvitRute extends Rute{
     //Sjekker alle naborutene og kaller på deres finn() metode så lenge referansen ikke er null, eller den forrige ruten
     @Override
     public void finn(Rute fra){
+        rutenr = teller;
+        teller++;
         for(Rute rute : naboer){
             if(rute != null && rute != fra){
-                if(rute.hentFarge() == "hvit"){
-                    rutenr = teller;
-                    teller++;
-                }
                 rute.finn(this);
                 
             }
