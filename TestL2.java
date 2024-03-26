@@ -6,6 +6,7 @@ public class TestL2 {
         Scanner sc = new Scanner(System.in);
         String userInp = "";
         Labyrint2 lab = null;
+        int[] kordinater;
         
         System.out.println("Velkommen til labyrintløseren");
 
@@ -28,7 +29,11 @@ public class TestL2 {
 
                 case "3":
                 try {
-                    lab.finnUtveifra(1, 1);
+                    System.out.println("Skriv inn kordinater på form <rad> <kolonne>");
+                    kordinater = lab.hentKordinater(sc);
+                    int rad = kordinater[0];
+                    int kolonne = kordinater[1];
+                    lab.finnUtveifra(rad, kolonne);
                 } catch (NullPointerException e) {
                     System.err.println("Labyrinten er ikke lastet inn, forsøk å lese ny labyrint fra fil først");
                 }
