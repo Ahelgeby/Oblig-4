@@ -22,38 +22,37 @@ public class Labyrint2  {
     //Tar inn dimensjonene på labyrinten og oppretter en matrise
     //Leser filen linje for linje, og char for char for å opprette riktig ruteobjekt på hver index i matrisen
 
-    public void lagLabyrint(String filbane){
+    public void lagLabyrint(String filbane) {
         int i = 0;
         File innfil = new File(filbane);
-        try{
+        try {
             sc = new Scanner(innfil);
-                antRader = sc.nextInt();
-                antKolonner = sc.nextInt();
-                ruter = new Rute[antRader][antKolonner];
-                sc.nextLine();
-                while (sc.hasNextLine()){
-                    String line = sc.nextLine();
-                    for(int j = 0; j <antKolonner; j++){            
-                        //Går igjennom hver char på linjen og sjekker hva slags rute som skal lages på bakgrunn av charen
-                        if(line.charAt(j) == '#'){                  
-                            ruter[i][j] = new SvartRute(i,j,this);
+            antRader = sc.nextInt();
+            antKolonner = sc.nextInt();
+            ruter = new Rute[antRader][antKolonner];
+            sc.nextLine();
+            while (sc.hasNextLine()){
+                String line = sc.nextLine();
+                for(int j = 0; j <antKolonner; j++){            
+                    //Går igjennom hver char på linjen og sjekker hva slags rute som skal lages på bakgrunn av charen
+                    if(line.charAt(j) == '#'){                  
+                        ruter[i][j] = new SvartRute(i,j,this);
 
-                        }else if(line.charAt(j) == '.'){                                        //sjekker om den aktuelle, hvite ruten er på siden til en av brettene, og oppretter
-                            if(i == 0 || i == antRader-1 || j == 0 || j == antKolonner -1){     //en instans av klassen Aapning om dette er tilfelle
-                                ruter[i][j] = new Aapning(i, j, this);
-                            }else{
-                            ruter[i][j] = new HvitRute(i,j,this);                               //Alle indre hvite ruter blir vanlige hvite ruter
-                            }
+                    }else if(line.charAt(j) == '.'){                                        //sjekker om den aktuelle, hvite ruten er på siden til en av brettene, og oppretter
+                        if(i == 0 || i == antRader-1 || j == 0 || j == antKolonner -1){     //en instans av klassen Aapning om dette er tilfelle
+                            ruter[i][j] = new Aapning(i, j, this);
+                        }else{
+                        ruter[i][j] = new HvitRute(i,j,this);                               //Alle indre hvite ruter blir vanlige hvite ruter
                         }
                     }
-                    i++;
-                        
                 }
-                }catch(FileNotFoundException e){
-                    System.out.println("fant ikke filen");
-                }finally{
-                    sc.close();
-                }
+                i++;
+            }
+            sc.close();
+            }
+            catch (FileNotFoundException e) {
+                System.err.println("fant ikke filen");
+            }
     }
     //Går igjennom matrisen og kaller på hver rutes "settnaboer()" metode, og kobler rutene sammen
     public void kobleRuter(){
