@@ -17,6 +17,7 @@ public class TestL2 {
                 case "1":
                     lab = lesFraFil(sc);
                     break;
+
                 case "2":
                     try {   
                         lab.tegnLab();
@@ -24,11 +25,21 @@ public class TestL2 {
                         System.err.println("Labyrinten er ikke lastet inn, forsøk å lese ny labyrint fra fil først");
                     }
                     break;
+
                 case "3":
+                try {
                     lab.finnUtveifra(1, 1);
+                } catch (NullPointerException e) {
+                    System.err.println("Labyrinten er ikke lastet inn, forsøk å lese ny labyrint fra fil først");
+                }
                     break;
+
                 case "4":
+                try {
                     lab.tegnTraversering();
+                } catch (NullPointerException e) {
+                    System.err.println("Labyrinten er ikke lastet inn, forsøk å lese ny labyrint fra fil først");
+                }
                     break;
             }
         }
