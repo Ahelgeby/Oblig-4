@@ -1,16 +1,17 @@
-
+import java.util.ArrayList;
 abstract class Rute {
     static int teller = 1;
     int radnummer;
     int kolonnenummer;
     Labyrint lab;
-    Labyrint2 lab2;
     Rute[] naboer;
     int antnaboer = 0;
     Boolean aapning = false;
     String tegn;
     String farge;
     int rutenr;
+    ArrayList<Tuppel> sti;
+    Tuppel t;
 
     public Rute(int rad, int kolonne, Labyrint l){
         radnummer = rad;
@@ -21,18 +22,20 @@ abstract class Rute {
         naboer[1] = null;   //Vest
         naboer[2] = null;   //Øst
         naboer[3] = null;   //Syd
+        sti = null;
+        t = null;
     }
 
-    public Rute(int rad, int kolonne, Labyrint2 l){
-        radnummer = rad;
-        kolonnenummer = kolonne;
-        lab2 = l;
-        naboer = new Rute[4];
-        naboer[0] = null;   //Nord
-        naboer[1] = null;   //Vest
-        naboer[2] = null;   //Øst
-        naboer[3] = null;   //Syd
-    }
+    // public Rute(int rad, int kolonne, Labyrint2 l){
+    //     radnummer = rad;
+    //     kolonnenummer = kolonne;
+    //     lab2 = l;
+    //     naboer = new Rute[4];
+    //     naboer[0] = null;   //Nord
+    //     naboer[1] = null;   //Vest
+    //     naboer[2] = null;   //Øst
+    //     naboer[3] = null;   //Syd
+    // }
 
     public String hentFarge(){
         return this.farge;
@@ -51,9 +54,7 @@ abstract class Rute {
     }
     public Rute hentRute(int i, int j){
         try{
-            if (lab == null) {
-                return lab2.ruter[i][j];
-            } else if (lab2 == null) {
+            if (lab != null) {
                 return lab.ruter[i][j];
             } else {return null;}
 
@@ -63,6 +64,9 @@ abstract class Rute {
     }
     public int hentRuteNr(){
         return rutenr;
+    }
+    public ArrayList<Tuppel> hentSti(){
+        return sti;
     }
     //Setter alle naboreferanser henholdsvis til ruten nord,vest,øst,eller syd for aktuell rute
     public void settNaboer(){
@@ -85,11 +89,11 @@ abstract class Rute {
     }
 
     //går igjennom alle rutene i listen over naboer, så lenge ruten ikke er null, og ruten metoden ble kalt fra kaller den på "finn()" på naboruten
-    public void finn(Rute fra){
+    public void finn(Rute fra, ArrayList<Tuppel> sti){
         for(Rute rute : naboer){
             if(rute != null && rute != fra){
                 fra = rute;
-                rute.finn(this);
+                rute.finn(this, sti);
             }
             }
         }
