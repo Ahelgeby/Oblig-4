@@ -101,6 +101,7 @@ public class Labyrint {
         }
     }
 
+
     @Override
     public String toString() {
         String returStreng = "";

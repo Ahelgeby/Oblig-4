@@ -99,6 +99,12 @@ public class Labyrint2  {
             System.out.println();
         }
     }
+    public int[] hentKordinater(Scanner sc){
+        int[] kordinater = new int[2];
+        kordinater[0] = sc.nextInt();
+        kordinater[1] = sc.nextInt();
+        return kordinater;
+    }
 
     @Override
     public String toString() {
