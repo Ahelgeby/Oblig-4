@@ -12,6 +12,7 @@ abstract class Rute {
     int rutenr;
     ArrayList<Tuppel> sti;
     Tuppel t;
+    Boolean besoekt = false;
 
     public Rute(int rad, int kolonne, Labyrint l){
         radnummer = rad;
@@ -68,10 +69,33 @@ abstract class Rute {
     public ArrayList<Tuppel> hentSti(){
         return sti;
     }
+    public void setBesoekt(){
+        besoekt = true;
+    }
+    public Boolean erBesoekt(){
+        return besoekt;
+    }
     //Setter alle naboreferanser henholdsvis til ruten nord,vest,øst,eller syd for aktuell rute
+    // public void settNaboer(){
+    //     if(hentRute(radnummer -1, kolonnenummer) != null){
+    //         naboer[0] = hentRute(radnummer -1, kolonnenummer);
+    //         antnaboer ++;
+    //     }
+    //     if(hentRute(radnummer, kolonnenummer -1) != null){
+    //         naboer[1] = hentRute(radnummer, kolonnenummer -1);
+    //         antnaboer ++;
+    //     }
+    //     if(hentRute(radnummer, kolonnenummer +1) != null){
+    //         naboer[2] = hentRute(radnummer, kolonnenummer +1);
+    //         antnaboer ++;
+    //     }
+    //     if(hentRute(radnummer +1, kolonnenummer) != null){
+    //         naboer[3] = hentRute(radnummer +1, kolonnenummer);
+    //         antnaboer ++;
+    //     }
     public void settNaboer(){
-        if(hentRute(radnummer -1, kolonnenummer) != null){
-            naboer[0] = hentRute(radnummer -1, kolonnenummer);
+        if(hentRute(radnummer +1, kolonnenummer) != null){
+            naboer[0] = hentRute(radnummer +1, kolonnenummer);
             antnaboer ++;
         }
         if(hentRute(radnummer, kolonnenummer -1) != null){
@@ -82,8 +106,8 @@ abstract class Rute {
             naboer[2] = hentRute(radnummer, kolonnenummer +1);
             antnaboer ++;
         }
-        if(hentRute(radnummer +1, kolonnenummer) != null){
-            naboer[3] = hentRute(radnummer +1, kolonnenummer);
+        if(hentRute(radnummer -1, kolonnenummer) != null){
+            naboer[3] = hentRute(radnummer -1, kolonnenummer);
             antnaboer ++;
         }
     }

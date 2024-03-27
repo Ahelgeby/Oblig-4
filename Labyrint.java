@@ -50,10 +50,12 @@ public class Labyrint  {
                 }
                 i++;
             }
-            sc.close();
+            
             }
             catch (FileNotFoundException e) {
                 System.err.println("fant ikke filen");
+            } finally{
+                sc.close();
             }
     }
     //Går igjennom matrisen og kaller på hver rutes "settnaboer()" metode, og kobler rutene sammen
@@ -64,12 +66,44 @@ public class Labyrint  {
             }
         }
     }
+
+    public void skrivLoesninger(){
+        int teller = 1;
+        System.out.println("Det er totalt: " + loesninger.size() + " loesninger: ");
+        for(int i = 0; i<loesninger.size(); i++){
+            System.out.println("Loesning nr: " + teller);
+            System.out.println(loesninger.get(i));
+            teller ++;
+        }
+    
+    }
     
 
     public void finnUtveifra(int rad, int kolonne){
+        int teller = 0;
         if(ruter[rad][kolonne].hentFarge() == "hvit"){
         ruter[rad][kolonne].finn(null, ruter[rad][kolonne].hentSti()); //Kaller på rute X Y sin finn() metode med fra = null && sti = X Y .hentSti()
-        System.out.println(loesninger);
+        skrivLoesninger();
+        }else{
+            System.out.println("Kan ikke starte paa sort rute");
+        }
+    }
+    public void finnKortesteUtveifra(int rad,int kolonne){
+        ArrayList<Tuppel> korteste = null;
+        int teller = 0;
+        if(ruter[rad][kolonne].hentFarge() == "hvit"){
+        ruter[rad][kolonne].finn(null, ruter[rad][kolonne].hentSti()); //Kaller på rute X Y sin finn() metode med fra = null && sti = X Y .hentSti()
+        skrivLoesninger();
+        for(int i = 0; i<loesninger.size(); i++){
+            if(korteste == null){
+                korteste = loesninger.get(i);
+            }else if(loesninger.get(i).size()< korteste.size()){
+                korteste = loesninger.get(i);
+            }
+        
+         }
+        System.out.println("Korteste loesning: " + korteste.size() + " skritt");
+        System.out.println(korteste);
         }else{
             System.out.println("Kan ikke starte paa sort rute");
         }
@@ -78,7 +112,7 @@ public class Labyrint  {
     public void tegnLab(){
         for(int i = 0; i<antRader;i++){
             for(int j= 0; j<antKolonner;j++){
-                System.out.print(ruter[i][j].hentTegn() + "  ");
+                System.out.print(ruter[i][j].hentTegn() + "   ");
             }
             System.out.println();
         }
@@ -90,14 +124,17 @@ public class Labyrint  {
                 if(ruter[i][j].hentFarge() == "hvit"){
                     String ruteNr = Integer.toString(ruter[i][j].hentRuteNr());
                     if (ruteNr.length() == 1) {
+                        System.out.print(ruteNr + "   ");
+                    }
+                    else if (ruteNr.length() == 2) {
                         System.out.print(ruteNr + "  ");
                     }
-                    else if (ruteNr.length() > 1) {
+                    else if(ruteNr.length() > 2){
                         System.out.print(ruteNr + " ");
                     }
                     //System.out.print(ruter[i][j].hentRuteNr() + " ");
                 }else{
-                    System.out.print(ruter[i][j] + "  ");
+                    System.out.print(ruter[i][j] + "   ");
                 }
             }
             System.out.println();
