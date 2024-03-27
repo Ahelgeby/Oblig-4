@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 public class SvartRute extends Rute{
     String farge;
 
@@ -5,13 +6,16 @@ public class SvartRute extends Rute{
         super(rad,kolonne,l);
         farge = "Sort";
         tegn = "#";
+        t = new Tuppel(radnummer, kolonnenummer);
+        sti = new ArrayList<Tuppel>();
+        sti.add(t);
     }
 
-    public SvartRute(int rad, int kolonne, Labyrint2 l){
-        super(rad,kolonne,l);
-        farge = "Sort";
-        tegn = "#";
-    }
+    // public SvartRute(int rad, int kolonne, Labyrint2 l){
+    //     super(rad,kolonne,l);
+    //     farge = "Sort";
+    //     tegn = "#";
+    // }
 
     @Override
     public String hentFarge(){
@@ -23,7 +27,7 @@ public class SvartRute extends Rute{
     }
     //Stopper å lete etter neste rute fordi denne er svart
     @Override
-    public void finn(Rute fra){
+    public void finn(Rute fra, ArrayList<Tuppel> sti){
         return;
     }
     @Override
