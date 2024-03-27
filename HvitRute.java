@@ -10,13 +10,6 @@ public class HvitRute extends Rute{
         t = new Tuppel(radnummer, kolonnenummer);
         sti = new ArrayList<Tuppel>();
     }
-
-    // public HvitRute(int rad, int kolonne, Labyrint2 l){
-    //     super(rad,kolonne,l);
-    //     farge = "hvit";
-    //     tegn = ".";
-    //     rutenr = 0;
-    // }
     
     @Override
     public String hentFarge(){
@@ -30,6 +23,7 @@ public class HvitRute extends Rute{
     public int hentRuteNr(){
         return rutenr;
     }
+    
     @Override
     public ArrayList<Tuppel> hentSti(){
         return sti;
@@ -40,14 +34,18 @@ public class HvitRute extends Rute{
     public void finn(Rute fra, ArrayList<Tuppel> sti){  //Første metodekall får inn fra = null og en tom sti
         sti.add(t);                                     //Legger til denne rutens tuppel i stien
         // ArrayList<Tuppel> nysti = new ArrayList<>(sti); Denne kan ikke stå her fordi den legger til tuppelet til venstre i "nysti" på metodekall vest, og bruker "nysti"
-        // som inneholder tuppelet til vest når finn.øst blir kalt med nysti 
+        // som inneholder tuppelet til vest når øst.finn() blir kalt med nysti 
         rutenr = teller;
         teller++;
         for(Rute rute : naboer){
             if(rute != null && rute != fra){
-                ArrayList<Tuppel> nysti = new ArrayList<>(sti); //Oppretter ny sti som kopi av den gamle, inneholder kun tuppelet til første rute på første metodekall
-                rute.finn(this, nysti);          
-
+                // System.out.print(t + " ");
+                // System.out.println(rute.erBesoekt());
+                if(!rute.erBesoekt()){
+                    rute.setBesoekt();
+                    ArrayList<Tuppel> nysti = new ArrayList<>(sti); //Oppretter ny sti som kopi av den gamle, inneholder kun tuppelet til første rute på første metodekall
+                    rute.finn(this, nysti);
+                }
                 
             }
         }
