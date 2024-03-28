@@ -112,7 +112,7 @@ public class Labyrint  {
     public void tegnLab(){
         for(int i = 0; i<antRader;i++){
             for(int j= 0; j<antKolonner;j++){
-                System.out.print(ruter[i][j].hentTegn() + "   ");
+                System.out.print(ruter[i][j].hentTegn() + "    ");
             }
             System.out.println();
         }
@@ -124,17 +124,20 @@ public class Labyrint  {
                 if(ruter[i][j].hentFarge() == "hvit"){
                     String ruteNr = Integer.toString(ruter[i][j].hentRuteNr());
                     if (ruteNr.length() == 1) {
-                        System.out.print(ruteNr + "   ");
+                        System.out.print(ruteNr + "    ");
                     }
                     else if (ruteNr.length() == 2) {
+                        System.out.print(ruteNr + "   ");
+                    }
+                    else if(ruteNr.length() == 3){
                         System.out.print(ruteNr + "  ");
                     }
-                    else if(ruteNr.length() > 2){
+                    else if(ruteNr.length() >3){
                         System.out.print(ruteNr + " ");
                     }
                     //System.out.print(ruter[i][j].hentRuteNr() + " ");
                 }else{
-                    System.out.print(ruter[i][j] + "   ");
+                    System.out.print(ruter[i][j] + "    ");
                 }
             }
             System.out.println();
