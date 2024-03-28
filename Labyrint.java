@@ -71,7 +71,7 @@ public class Labyrint  {
         int teller = 1;
         System.out.println("Det er totalt: " + loesninger.size() + " loesninger: ");
         for(int i = 0; i<loesninger.size(); i++){
-            System.out.println("Loesning nr: " + teller);
+            System.out.println("Loesning nr: " + teller + ": " + loesninger.get(i).size() + " skritt: ");
             System.out.println(loesninger.get(i));
             teller ++;
         }
