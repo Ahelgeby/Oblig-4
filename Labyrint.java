@@ -80,7 +80,6 @@ public class Labyrint  {
     
 
     public void finnUtveifra(int rad, int kolonne){
-        int teller = 0;
         if(ruter[rad][kolonne].hentFarge() == "hvit"){
         ruter[rad][kolonne].finn(null, ruter[rad][kolonne].hentSti()); //Kaller på rute X Y sin finn() metode med fra = null && sti = X Y .hentSti()
         skrivLoesninger();
@@ -88,9 +87,9 @@ public class Labyrint  {
             System.out.println("Kan ikke starte paa sort rute");
         }
     }
+
     public void finnKortesteUtveifra(int rad,int kolonne){
         ArrayList<Tuppel> korteste = null;
-        int teller = 0;
         if(ruter[rad][kolonne].hentFarge() == "hvit"){
         ruter[rad][kolonne].finn(null, ruter[rad][kolonne].hentSti()); //Kaller på rute X Y sin finn() metode med fra = null && sti = X Y .hentSti()
         skrivLoesninger();
@@ -151,16 +150,16 @@ public class Labyrint  {
     }
 
     @Override
-    public String toString() {
-        String returStreng = "";
+    public String toString() {    
+        StringBuilder returStreng = new StringBuilder((this.antRader + this.antKolonner) * 3 + this.antRader); //Allokerer plass for tre tegn per rute pluss antRader for newlines.
         for (int i = 0; i<antRader; i++) {
             for (int j = 0; j<antKolonner; j++) {
-                returStreng = returStreng + (ruter[i][j].hentTegn() + "  ");
+                returStreng.append(ruter[i][j].hentTegn() + "  ");
             }
-            returStreng = returStreng + "\n";
+            returStreng.append("\n");
         }
 
-        return returStreng;
+        return returStreng.toString();
     }
 
 }
