@@ -109,39 +109,46 @@ public class Labyrint  {
     }
 
     public void tegnLab(){
-        for(int i = 0; i<antRader;i++){
-            for(int j= 0; j<antKolonner;j++){
-                System.out.print(ruter[i][j].hentTegn() + "    ");
-            }
-            System.out.println();
-        }
+        // for(int i = 0; i<antRader;i++){
+        //     for(int j= 0; j<antKolonner;j++){
+        //         System.out.print(ruter[i][j].hentTegn() + "    ");
+        //     }
+        //     System.out.println();
+        // }
+
+        System.out.println(this);
     }
 
     public void tegnTraversering(){
+        StringBuilder str = new StringBuilder();
         for(int i = 0; i<antRader; i++){
             for(int j = 0; j<antKolonner; j++){
-                if(ruter[i][j].hentFarge() == "hvit"){
+
+                if (ruter[i][j] instanceof SvartRute) {
+                    str.append("  " + ruter[i][j] + "  ");
+                }
+                else {
+
                     String ruteNr = Integer.toString(ruter[i][j].hentRuteNr());
-                    if (ruteNr.length() == 1) {
-                        System.out.print(ruteNr + "    ");
+                    switch (ruteNr.length()) {
+                        case 1:
+                        str.append("  " + ruter[i][j].hentRuteNr() + "  ");
+                        break;
+                        case 2:
+                        str.append(" " + ruter[i][j].hentRuteNr() + "  ");
+                        break;
+                        case 3:
+                        str.append(" " + ruter[i][j].hentRuteNr() + " ");
+                        break;
                     }
-                    else if (ruteNr.length() == 2) {
-                        System.out.print(ruteNr + "   ");
-                    }
-                    else if(ruteNr.length() == 3){
-                        System.out.print(ruteNr + "  ");
-                    }
-                    else if(ruteNr.length() >3){
-                        System.out.print(ruteNr + " ");
-                    }
-                    //System.out.print(ruter[i][j].hentRuteNr() + " ");
-                }else{
-                    System.out.print(ruter[i][j] + "    ");
                 }
             }
-            System.out.println();
+            str.append("\n\n");
         }
+
+        System.out.println(str);
     }
+    
     public int[] hentKordinater(Scanner sc){
         int[] kordinater = new int[2];
         kordinater[0] = sc.nextInt();
@@ -152,11 +159,12 @@ public class Labyrint  {
     @Override
     public String toString() {    
         StringBuilder returStreng = new StringBuilder((this.antRader + this.antKolonner) * 3 + this.antRader); //Allokerer plass for tre tegn per rute pluss antRader for newlines.
+        
         for (int i = 0; i<antRader; i++) {
             for (int j = 0; j<antKolonner; j++) {
-                returStreng.append(ruter[i][j].hentTegn() + "  ");
+                returStreng.append("  " + ruter[i][j].hentTegn() + "  ");
             }
-            returStreng.append("\n");
+            returStreng.append("\n\n");
         }
 
         return returStreng.toString();
