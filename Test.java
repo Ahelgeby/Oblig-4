@@ -28,16 +28,16 @@ public class Test {
                     break;
 
                 case "3":
-                try {
-                    System.out.println("Skriv inn kordinater på form <rad> <kolonne>");
-                    kordinater = lab.hentKordinater(sc);
-                    int rad = kordinater[0];
-                    int kolonne = kordinater[1];
-                    lab.finnUtveifra(rad, kolonne);
-                } catch (NullPointerException e) {
-                    System.err.println("Labyrinten er ikke lastet inn, forsøk å lese ny labyrint fra fil først");
-                }
-                    break;
+                    try {
+                        System.out.println("Skriv inn kordinater på form <rad> <kolonne>");
+                        kordinater = lab.hentKordinater(sc);
+                        int rad = kordinater[0];
+                        int kolonne = kordinater[1];
+                        lab.finnUtveifra(rad, kolonne);
+                    } catch (NullPointerException e) {
+                        System.err.println("Labyrinten er ikke lastet inn, forsøk å lese ny labyrint fra fil først");
+                    }
+                        break;
                 case "4":
                     try{
                         System.out.println("Skriv inn kordinater på form <rad> <kolonne>");
@@ -52,12 +52,12 @@ public class Test {
                         break;
 
                 case "5":
-                try {
-                    lab.tegnTraversering();
-                } catch (NullPointerException e) {
-                    System.err.println("Labyrinten er ikke lastet inn, forsøk å lese ny labyrint fra fil først");
-                }
-                    break;
+                    try {
+                        lab.tegnTraversering();
+                    } catch (NullPointerException e) {
+                        System.err.println("Labyrinten er ikke lastet inn, forsøk å lese ny labyrint fra fil først");
+                    }
+                        break;
             }
         }
 
